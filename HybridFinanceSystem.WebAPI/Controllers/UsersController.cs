@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using HybridFinanceSystem.Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using HybridFinanceSystem.Infrastructure.Persistence;
 
@@ -8,24 +9,17 @@ namespace HybridFinanceSystem.Controllers;
 [Route("api/[controller]")]
 public class UsersController : ControllerBase
 {
-    private readonly AppDbContext _context;
+    private readonly IUserRepository _userRepository;
 
-    // Dependency Injection: Program.cs'de tanıttığımız DbContext'i buraya istiyoruz
-    public UsersController(AppDbContext context)
+    public UsersController(IUserRepository userRepository)
     {
-        _context = context;
+        _userRepository = userRepository;
     }
 
-    // Tüm kullanıcıları getir (Test için)
     [HttpGet]
     public async Task<IActionResult> GetUsers()
     {
-        // SQL: SELECT * FROM Users
-        var users = await _context.Users.ToListAsync();
-        
-        if (users.Count == 0)
-            return Ok("Veritabanı bağlantısı başarılı ama henüz kullanıcı yok.");
-
+        var users = await _userRepository.GetAllUsersAsync();
         return Ok(users);
     }
 }
