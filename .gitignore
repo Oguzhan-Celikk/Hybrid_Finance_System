@@ -1,0 +1,35 @@
+﻿/HybridFinanceSystem.sln
+## Hassas Bilgiler ve Yapılandırmalar (Kişisel/Gizli Veriler)
+appsettings.Development.json
+appsettings.Local.json
+*.user
+*.userosscache
+*.sln.docstates
+
+## IDE ve Editör Klasörleri (Kişisel çalışma alanı ayarları)
+.vs/
+.idea/
+.vscode/
+*.suo
+*.userprefs
+*.layout
+
+## Derleme Sonuçları (Git'te olmamalıdır)
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+
+## Rider ve ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+## Nuget Paketleri
+*.nupkg
+packages/
+project.lock.json
+nuget.config
+
+## Mac/Windows Sistem Dosyaları
+.DS_Store
+Thumbs.db
