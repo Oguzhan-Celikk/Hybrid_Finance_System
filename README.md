@@ -13,7 +13,7 @@ Bu platform, sadece harcamaları kaydeden standart bir uygulama değil; harcama 
 
 ### 🏛️ 2. Kurumsal Varlık Yönetimi (.NET 9 & MSSQL)
 
-* **Hibrit Portföy:** Hisse senedi, kripto para ve döviz varlıklarını canlı verilerle takip eder.
+* **Hibrit Portföy:** Hisse senedi, kripto para ve döviz varlıklarını canlı verilerle takip eder. 
 * **Veri Bütünlüğü:** MSSQL üzerinde kurgulanan tetikleyiciler (Triggers) ve saklı yordamlar (Stored Procedures) ile hatasız bakiye yönetimi sağlar.
 * **Raporlama:** Harcama ve varlık değişimlerini analiz ederek profesyonel PDF raporlarına dönüştürür.
 
