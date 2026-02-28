@@ -13,7 +13,7 @@ public class Currency
         Users = new HashSet<User>();
         Assets = new HashSet<Asset>();
         AssetPriceHistories = new HashSet<AssetPriceHistory>();
-    }
+    } 
 
     [Key]
     [StringLength(3)]
