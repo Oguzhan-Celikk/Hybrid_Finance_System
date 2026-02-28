@@ -6,7 +6,7 @@ using HybridFinanceSystem.Domain.Common;
 namespace HybridFinanceSystem.Domain.Entities;
 
 [Table("Assets")]
-public class Asset
+public class Asset 
 {
     public Asset()
     {
