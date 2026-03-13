@@ -1,31 +1,35 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using HybridFinanceSystem.Domain.Common;
-
+﻿using System;
+using System.Collections.Generic;
 
 namespace HybridFinanceSystem.Domain.Entities;
 
-[Table("Budgets")]
-public class Budget : BaseEntity
+public partial class Budget
 {
-    [Key]
-    public int Budget_ID { get; set; }
+    public Guid BudgetId { get; set; }
 
-    public int Users_ID { get; set; }
+    public Guid UserId { get; set; }
 
-    public int Category_ID { get; set; }
+    public int? CategoryId { get; set; }
 
-    [Column(TypeName = "decimal(18, 4)")]
-    public decimal AmountLimit { get; set; }
+    public string Name { get; set; } = null!;
 
-    public DateTime StartDate { get; set; }
+    public decimal Amount { get; set; }
 
-    public DateTime EndDate { get; set; }
+    public string CurrencyCode { get; set; } = null!;
 
-    // --- Navigation Properties ---
-    [ForeignKey("Users_ID")]
-    public User User { get; set; } = null!;
+    public string PeriodType { get; set; } = null!;
 
-    [ForeignKey("Category_ID")]
-    public Category Category { get; set; } = null!;
+    public DateOnly StartDate { get; set; }
+
+    public DateOnly? EndDate { get; set; }
+
+    public short AlertAtPercent { get; set; }
+
+    public bool IsActive { get; set; }
+
+    public DateTime CreatedAt { get; set; }
+
+    public virtual Category? Category { get; set; }
+
+    public virtual User User { get; set; } = null!;
 }

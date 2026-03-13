@@ -1,48 +1,57 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using HybridFinanceSystem.Domain.Common;
-
+﻿using System;
+using System.Collections.Generic;
 
 namespace HybridFinanceSystem.Domain.Entities;
 
-[Table("Assets")]
-public class Asset
+public partial class Asset
 {
-    public Asset()
-    {
-        Transactions = new HashSet<Transaction>();
-        BalanceAuditLogs = new HashSet<BalanceAuditLog>();
-        InvestmentIncomes = new HashSet<InvestmentIncome>();
-        ScheduledTransactions = new HashSet<ScheduledTransaction>();
-    }
+    public Guid AssetId { get; set; }
 
-    [Key]
-    public int Asset_ID { get; set; }
+    public Guid UserId { get; set; }
 
-    public int Users_ID { get; set; }
+    public string Symbol { get; set; } = null!;
 
-    [Required, StringLength(100)]
-    public string AssetName { get; set; } = string.Empty;
+    public string AssetType { get; set; } = null!;
 
-    [StringLength(3)]
-    public string CurrencyCode { get; set; } = string.Empty;
+    public string Name { get; set; } = null!;
 
-    [Column(TypeName = "decimal(18, 4)")]
-    public decimal Balance { get; set; } = 0;
+    public string? Exchange { get; set; }
 
-    public bool IsDeleted { get; set; } = false;
+    public string CurrencyCode { get; set; } = null!;
 
-    public DateTime UpdatedAt { get; set; } = DateTime.Now;
+    public decimal Quantity { get; set; }
 
-    // --- Navigation Properties ---
-    [ForeignKey("Users_ID")]
-    public User User { get; set; } = null!;
+    public decimal AverageCost { get; set; }
 
-    [ForeignKey("CurrencyCode")]
-    public Currency Currency { get; set; } = null!;
+    public decimal TotalCost { get; set; }
 
-    public ICollection<Transaction> Transactions { get; set; }
-    public ICollection<BalanceAuditLog> BalanceAuditLogs { get; set; }
-    public ICollection<InvestmentIncome> InvestmentIncomes { get; set; }
-    public ICollection<ScheduledTransaction> ScheduledTransactions { get; set; }
+    public decimal? CurrentPrice { get; set; }
+
+    public decimal? CurrentValue { get; set; }
+
+    public decimal? UnrealizedPnl { get; set; }
+
+    public decimal? UnrealizedPnlPct { get; set; }
+
+    public DateTime? PriceUpdatedAt { get; set; }
+
+    public Guid? ForexPositionId { get; set; }
+
+    public bool IsActive { get; set; }
+
+    public string? Notes { get; set; }
+
+    public DateTime CreatedAt { get; set; }
+
+    public DateTime UpdatedAt { get; set; }
+
+    public virtual ICollection<AssetTransaction> AssetTransactions { get; set; } = new List<AssetTransaction>();
+
+    public virtual ForexPosition? ForexPosition { get; set; }
+
+    public virtual ICollection<PriceAlert> PriceAlerts { get; set; } = new List<PriceAlert>();
+
+    public virtual ICollection<StakingReward> StakingRewards { get; set; } = new List<StakingReward>();
+
+    public virtual User User { get; set; } = null!;
 }
